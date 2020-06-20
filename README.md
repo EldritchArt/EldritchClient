@@ -4,6 +4,10 @@
 
 A minecraft mod to improve quality of life
 
+## Installation
+
+Copy the build/libs/eldritch-client-version jar file to your mods folder
+
 ## Credit
 
 The mod icon isn't mine, its just really cool. www.Helmuttt.deviantart.com is the owner.
