@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "eldritchclient",
+  "version": "${version}",
+
+  "name": "Eldritch Client",
+  "description": "A number of QOL improvements created by user EldritchArt",
+  "authors": [
+    "EldritchArt"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/EldritchArt/EldritchClient"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/modid/Illithid.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.eldritch.client.EldritchClient"
+    ]
+  },
+  "mixins": [
+  	"fabric.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.15.x"
+  },
+  "suggests": {
+  }
+}
