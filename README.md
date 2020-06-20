@@ -10,7 +10,7 @@ Copy the build/libs/eldritch-client-version jar file to your mods folder
 
 ## Credit
 
-The mod icon isn't mine, its just really cool. www.Helmuttt.deviantart.com is the owner.
+The mod icon isn't mine, its just really cool. www.deviantart.com/helmuttt is the owner.
 
 ## License
 
