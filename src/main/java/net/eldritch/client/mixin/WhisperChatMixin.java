@@ -18,9 +18,11 @@ public class WhisperChatMixin {
 	
 	@Inject(at = @At("HEAD"), method="sendChatMessage", cancellable=true)
 	public void sendChatMessage(String string, CallbackInfo callback) {
-		string = Whisper.doWork(string);
-		if (string.length()!=0)
-		networkHandler.sendPacket(new ChatMessageC2SPacket(string));
-		callback.cancel();
+		if (Whisper.enabled() && Whisper.workOnMessage(string)) {
+			string = Whisper.doWork(string);
+			if (string.length()!=0)
+				networkHandler.sendPacket(new ChatMessageC2SPacket(string));
+			callback.cancel();
+		}
 	}
 }

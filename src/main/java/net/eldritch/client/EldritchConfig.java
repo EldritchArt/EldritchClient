@@ -94,10 +94,8 @@ public class EldritchConfig {
 	 * Called by each thing that requires configuration to show what that configuration's default is
 	 */
 	public void initializeOptions(String group, String[] options) {
-		if (configuration.containsKey(group)) return;
-		
 		HashMap<String, String> groupOptions = new HashMap<String, String>();
-		for (String option : options) setOption(groupOptions, option);
+		for (String option : options) if (!groupOptions.containsKey(option.split(":")[0])) setOption(groupOptions, option);
 		
 		configuration.put(group, groupOptions);
 	}

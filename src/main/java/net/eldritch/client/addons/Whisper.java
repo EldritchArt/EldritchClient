@@ -13,14 +13,12 @@ public class Whisper {
 	private static String currentPrefix = "";
 	
 	public static void WhisperInit() {
-		String[] initOptions = {"Enabled(y/n):y","Formats:/msg_{} /pc","Cancel Prefix:/say"};
+		String[] initOptions = {"Enabled(y/n):y","Formats:/msg_{} /pc","Cancel Prefix:/say", "Allow through:. ,"};
 		EldritchClient.config.initializeOptions("Whisper", initOptions);
 		options = EldritchClient.config.getOptionGroup("Whisper");
 	}
 	
 	public static String doWork(String typedMessage) {
-		if (!(((String)options.get("Enabled(y/n)")).equals("y"))) return typedMessage;
-		
 		String[] formats = ((String)options.get("Formats")).split(" ");
 		for (String format : formats) {
 			int checker = specialStartsWith(format, typedMessage);
@@ -58,7 +56,7 @@ public class Whisper {
 			if (ri != regex.length()-1) //needed for an edge case
 			if (regex.charAt(ri)=='{' && regex.charAt(ri+1)=='}' && string.charAt(si)!=' ') {
 				ri+=2;
-				while (string.charAt(++si)!=' ');
+				while (++si < string.length() && string.charAt(si)!=' ');
 				continue;
 			}
 			if (regex.charAt(ri)==string.charAt(si)) {ri++; si++; continue;}
@@ -66,5 +64,15 @@ public class Whisper {
 			
 			return -1;
 		}
+	}
+	
+	public static boolean enabled() {
+		return (((String)options.get("Enabled(y/n)")).equals("y"));
+	}
+
+	public static boolean workOnMessage(String string) {
+		String[] ignoreList = options.get("Allow through").split(" ");
+		for (String ignore : ignoreList) if (ignore.length() > 0 && string.startsWith(ignore)) return false;
+		return true;
 	}
 }
