@@ -60,6 +60,7 @@ public class EldritchClickGui extends Screen {
 			while(iterator.hasNext()) {
 				selectedGroupInfo[i++] = (Map.Entry)iterator.next();
 				textFields[i-1] = this.addButton(new TextFieldWidget(this.font,textX,i*25+40,200,20,(String)selectedGroupInfo[i-1].getKey()));
+				textFields[i-1].setMaxLength(256);
 				textFields[i-1].setText((String)selectedGroupInfo[i-1].getValue());
 			}
 			

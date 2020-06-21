@@ -5,6 +5,7 @@ import org.lwjgl.glfw.GLFW;
 import net.eldritch.client.addons.Caravan;
 import net.eldritch.client.addons.Censor;
 import net.eldritch.client.addons.F3Shadow;
+import net.eldritch.client.addons.Ruinous;
 import net.eldritch.client.addons.Whisper;
 import net.eldritch.client.gui.EldritchClickGui;
 import net.fabricmc.api.EnvType;
@@ -33,6 +34,7 @@ public class EldritchClient implements ModInitializer {
 		Whisper.WhisperInit();
 		Caravan.caravanInit();
 		Censor.censorInit();
+		Ruinous.ruinousInit();
 		
 		config.saveConfigFile();
 	}
