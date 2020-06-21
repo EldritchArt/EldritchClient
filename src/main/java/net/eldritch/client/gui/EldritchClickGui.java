@@ -79,6 +79,7 @@ public class EldritchClickGui extends Screen {
 	
 	@Override
 	public void onClose() {
+		if (null != textFields) //fix crash glitch
 		for (int i = 0; i < textFields.length; i++) {
 			groupOptions.put((String)selectedGroupInfo[i].getKey(), textFields[i].getText());
 		}

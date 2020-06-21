@@ -106,7 +106,7 @@ public class EldritchConfig {
 	 * Takes in an option of the form "name:value" and sets it accordingly
 	 */
 	public static void setOption(HashMap<String, String> groupOptions, String option) {
-		String[] options = option.split(":");
+		String[] options = option.split(":",2);
 		if (options.length != 2) throw new IllegalStateException();
 		if (null == groupOptions) throw new IllegalStateException();
 		groupOptions.put(options[0], options[1]);

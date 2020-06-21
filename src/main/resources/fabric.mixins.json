@@ -5,7 +5,8 @@
   "mixins": [],
   "client": [
     "SpooferRendererMixin",
-    "WhisperChatMixin"
+    "WhisperChatMixin",
+    "CensorChatMixin"
   ],
   "injectors": {
     "defaultRequire": 1
