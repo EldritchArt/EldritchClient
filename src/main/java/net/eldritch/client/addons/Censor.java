@@ -2,7 +2,14 @@ package net.eldritch.client.addons;
 
 import java.util.HashMap;
 
+import org.lwjgl.glfw.GLFW;
+
 import net.eldritch.client.EldritchClient;
+import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
+import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
+import net.fabricmc.fabric.api.event.client.ClientTickCallback;
+import net.minecraft.client.util.InputUtil;
+import net.minecraft.util.Identifier;
 
 //this might be really inneficcient and slow lol
 public class Censor {

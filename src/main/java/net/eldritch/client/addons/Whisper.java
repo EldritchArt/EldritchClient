@@ -2,22 +2,48 @@ package net.eldritch.client.addons;
 
 import java.util.HashMap;
 
+import org.lwjgl.glfw.GLFW;
+
 import net.eldritch.client.EldritchClient;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
+import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
+import net.fabricmc.fabric.api.event.client.ClientTickCallback;
+import net.minecraft.client.util.InputUtil;
+import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class Whisper {
 	
 	private static HashMap<String, String> options;
 	private static String currentPrefix = "";
+	private static String prevPrefix = "";
 	
 	public static void WhisperInit() {
 		String[] initOptions = {"Enabled(y/n):y","Formats:/msg_{} /pc","Cancel Prefix:/say", "Allow through:. ,", "Show hud(y/n):y"};
 		EldritchClient.config.initializeOptions("Whisper", initOptions);
 		options = EldritchClient.config.getOptionGroup("Whisper");
+		
+		FabricKeyBinding toggleHotkey = FabricKeyBinding.Builder.create(new Identifier("eldritchclient", "toggle.whisper"),
+				InputUtil.Type.KEYSYM, -1, "eldritchclient").build();
+		KeyBindingRegistry.INSTANCE.register(toggleHotkey);
+
+		ClientTickCallback.EVENT.register(e -> {
+			if (toggleHotkey.wasPressed())
+				toggleOn();
+		});
 	}
 	
+	private static void toggleOn() {
+		if (currentPrefix.length() == 0) {
+			currentPrefix = prevPrefix;
+		} else {
+			prevPrefix = currentPrefix;
+			currentPrefix = "";
+		}
+	}
+
 	public static String doWork(String typedMessage) {
 		String[] formats = ((String)options.get("Formats")).split(" ");
 		for (String format : formats) {
