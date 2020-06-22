@@ -5,6 +5,7 @@ import org.lwjgl.glfw.GLFW;
 import net.eldritch.client.addons.Caravan;
 import net.eldritch.client.addons.Censor;
 import net.eldritch.client.addons.F3Shadow;
+import net.eldritch.client.addons.Fumble;
 import net.eldritch.client.addons.Insomnia;
 import net.eldritch.client.addons.Nescience;
 import net.eldritch.client.addons.Orient;
@@ -41,6 +42,7 @@ public class EldritchClient implements ModInitializer {
 		Orient.initOrient();
 		Insomnia.insomniaInit();
 		Nescience.nescienceInit();
+		Fumble.fumbleInit();
 		
 		config.saveConfigFile();
 	}

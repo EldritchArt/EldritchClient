@@ -10,7 +10,8 @@
     "RuinousInteractionMixin",
     "WhisperInfoHud",
     "InsomniaInteractMixin",
-    "NescienceSignMixin"
+    "NescienceSignMixin",
+    "FumbleContainerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
