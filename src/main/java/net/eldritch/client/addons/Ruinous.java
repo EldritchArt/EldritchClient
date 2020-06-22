@@ -14,7 +14,7 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
 
 public class Ruinous {
-	public static HashMap<String, String> options;
+	private static HashMap<String, String> options;
 	private static Random rand = new Random();
 	
 	public static void ruinousInit() {
