@@ -1,0 +1,25 @@
+Finished addons:
+	coord logger ( ͡° ͜ʖ ͡°)
+	F3 Shadow
+	Whisper
+	Caravan
+	Censor
+	Ruinous
+	Orient
+	Insomnia
+	Nescience
+	Fumble
+
+Working on addons:
+	log-out-spot
+	HighlightConflictingEnchants
+	anti-lava aura
+
+Wait for gui overhaul:
+	autocrafter
+
+Planned addons:
+	Auto book writer (no char limit for copy paste)
+	
+Would be nice but I'm not smart enough:
+	mob spawning sphere renderer
