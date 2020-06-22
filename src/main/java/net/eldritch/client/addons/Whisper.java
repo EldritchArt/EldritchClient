@@ -13,7 +13,7 @@ public class Whisper {
 	private static String currentPrefix = "";
 	
 	public static void WhisperInit() {
-		String[] initOptions = {"Enabled(y/n):y","Formats:/msg_{} /pc","Cancel Prefix:/say", "Allow through:. ,"};
+		String[] initOptions = {"Enabled(y/n):y","Formats:/msg_{} /pc","Cancel Prefix:/say", "Allow through:. ,", "Show hud(y/n):y"};
 		EldritchClient.config.initializeOptions("Whisper", initOptions);
 		options = EldritchClient.config.getOptionGroup("Whisper");
 	}
@@ -69,10 +69,15 @@ public class Whisper {
 	public static boolean enabled() {
 		return (((String)options.get("Enabled(y/n)")).equals("y"));
 	}
+	public static boolean hudEnabled() {
+		return (((String)options.get("Show hud(y/n)")).equals("y"));
+	}
 
 	public static boolean workOnMessage(String string) {
 		String[] ignoreList = options.get("Allow through").split(" ");
 		for (String ignore : ignoreList) if (ignore.length() > 0 && string.startsWith(ignore)) return false;
 		return true;
 	}
+	
+	public static String getPrefix() {return currentPrefix;}
 }

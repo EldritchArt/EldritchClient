@@ -7,7 +7,8 @@
     "SpooferRendererMixin",
     "WhisperChatMixin",
     "CensorChatMixin",
-    "RuinousInteractionMixin"
+    "RuinousInteractionMixin",
+    "WhisperInfoHud"
   ],
   "injectors": {
     "defaultRequire": 1
