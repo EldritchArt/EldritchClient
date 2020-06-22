@@ -19,13 +19,11 @@ import org.apache.logging.log4j.Logger;
 public class CensorChatMixin {
 	@Shadow
 	private static Logger LOGGER;
-	
+
 	@Shadow
 	MinecraftClient client;
-	
-	
-	
-	@Inject(at = @At("HEAD"), method="addMessage(Lnet/minecraft/text/Text;I)V", cancellable=true)
+
+	@Inject(at = @At("HEAD"), method = "addMessage(Lnet/minecraft/text/Text;I)V", cancellable = true)
 	public void addMessage(Text text, int messageId, CallbackInfo callback) {
 		if (Censor.enabled()) {
 			String censored;
@@ -33,18 +31,17 @@ public class CensorChatMixin {
 				censored = Censor.doCensor(text.asFormattedString());
 			else
 				censored = Censor.doCensor(text.getString());
-			if (censored == null) callback.cancel();
+			if (censored == null)
+				callback.cancel();
 			text = new LiteralText(censored);
-			
-			shadow$addMessage(text, messageId, client.inGameHud.getTicks(),false);
+
+			shadow$addMessage(text, messageId, client.inGameHud.getTicks(), false);
 			LOGGER.info("[CHAT] {}", text.getString().replaceAll("\r", "\\\\r").replaceAll("\n", "\\\\n"));
 			callback.cancel();
 		}
 	}
 
-
 	@Shadow
 	private void shadow$addMessage(Text text, int messageId, int ticks, boolean b) {
-		
 	}
 }

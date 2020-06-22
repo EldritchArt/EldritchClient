@@ -9,7 +9,8 @@
     "CensorChatMixin",
     "RuinousInteractionMixin",
     "WhisperInfoHud",
-    "InsomniaInteractMixin"
+    "InsomniaInteractMixin",
+    "NescienceSignMixin"
   ],
   "injectors": {
     "defaultRequire": 1
