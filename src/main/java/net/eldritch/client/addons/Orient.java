@@ -33,11 +33,13 @@ public class Orient {
 	public static void orient() {
 		float newYaw = MinecraftClient.getInstance().player.yaw;
 		float interval = Float.parseFloat(options.get("YawInterval"));
+		newYaw += 180;
 		newYaw += interval/2;
-		if (newYaw > 360) newYaw = 0;
 		newYaw = newYaw / interval;
 		newYaw = (int)newYaw;
 		newYaw = newYaw * interval;
+		newYaw -= 180;
+		if (newYaw == 180) newYaw = -180;
 		MinecraftClient.getInstance().player.yaw = newYaw;
 
 		if (options.get("Set pitch(y/n)").equals("y"))
