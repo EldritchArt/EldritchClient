@@ -9,7 +9,6 @@ import net.eldritch.client.EldritchClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
-import net.minecraft.container.SlotActionType;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
@@ -78,7 +77,7 @@ public class Drunkard {
 	}
 
 	public static int getHotbarSlot() {
-		return player.inventory.selectedSlot + 36;
+		return player.inventory.selectedSlot;
 	}
 
 	public static boolean holdingBeer(ArrayList<StatusEffect> menu) {
