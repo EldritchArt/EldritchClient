@@ -1,0 +1,81 @@
+---- Minecraft Crash Report ----
+// I blame Dinnerbone.
+
+Time: 6/22/20, 3:41 PM
+Description: Initializing game
+
+java.lang.ExceptionInInitializerError
+	at net.minecraft.client.options.GameOptions.<init>(GameOptions.java:221)
+	at net.minecraft.client.MinecraftClient.<init>(MinecraftClient.java:363)
+	at net.minecraft.client.main.Main.main(Main.java:140)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at net.fabricmc.loader.game.MinecraftGameProvider.launch(MinecraftGameProvider.java:192)
+	at net.fabricmc.loader.launch.knot.Knot.init(Knot.java:140)
+	at net.fabricmc.loader.launch.knot.KnotClient.main(KnotClient.java:26)
+Caused by: java.lang.RuntimeException: java.lang.UnsatisfiedLinkError: Failed to locate library: liblwjgl.so
+	at net.minecraft.client.util.InputUtil.<clinit>(InputUtil.java:109)
+	... 10 more
+Caused by: java.lang.UnsatisfiedLinkError: Failed to locate library: liblwjgl.so
+	at org.lwjgl.system.Library.loadSystem(Library.java:147)
+	at org.lwjgl.system.Library.loadSystem(Library.java:67)
+	at org.lwjgl.system.Library.<clinit>(Library.java:50)
+	at org.lwjgl.system.MemoryAccessJNI.<clinit>(MemoryAccessJNI.java:13)
+	at org.lwjgl.system.Pointer.<clinit>(Pointer.java:28)
+	at org.lwjgl.system.Platform.mapLibraryNameBundled(Platform.java:80)
+	at org.lwjgl.glfw.GLFW.<clinit>(GLFW.java:674)
+	at java.base/jdk.internal.misc.Unsafe.ensureClassInitialized0(Native Method)
+	at java.base/jdk.internal.misc.Unsafe.ensureClassInitialized(Unsafe.java:1042)
+	at java.base/java.lang.invoke.DirectMethodHandle$EnsureInitialized.computeValue(DirectMethodHandle.java:357)
+	at java.base/java.lang.invoke.DirectMethodHandle$EnsureInitialized.computeValue(DirectMethodHandle.java:354)
+	at java.base/java.lang.ClassValue.getFromHashMap(ClassValue.java:226)
+	at java.base/java.lang.ClassValue.getFromBackup(ClassValue.java:208)
+	at java.base/java.lang.ClassValue.get(ClassValue.java:114)
+	at java.base/java.lang.invoke.DirectMethodHandle.checkInitialized(DirectMethodHandle.java:378)
+	at java.base/java.lang.invoke.DirectMethodHandle.ensureInitialized(DirectMethodHandle.java:368)
+	at java.base/java.lang.invoke.DirectMethodHandle.ensureInitialized(DirectMethodHandle.java:400)
+	at net.minecraft.client.util.InputUtil.<clinit>(InputUtil.java:106)
+	... 10 more
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Stacktrace:
+	at net.minecraft.client.options.GameOptions.<init>(GameOptions.java:221)
+	at net.minecraft.client.MinecraftClient.<init>(MinecraftClient.java:363)
+
+-- Initialization --
+Details:
+Stacktrace:
+	at net.minecraft.client.main.Main.main(Main.java:140)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at net.fabricmc.loader.game.MinecraftGameProvider.launch(MinecraftGameProvider.java:192)
+	at net.fabricmc.loader.launch.knot.Knot.init(Knot.java:140)
+	at net.fabricmc.loader.launch.knot.KnotClient.main(KnotClient.java:26)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.15.2
+	Minecraft Version ID: 1.15.2
+	Operating System: Linux (amd64) version 4.15.0-54-generic
+	Java Version: 11.0.3, Oracle Corporation
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 2228952840 bytes (2125 MB) / 2464153600 bytes (2350 MB) up to 8403288064 bytes (8014 MB)
+	CPUs: 4
+	JVM Flags: 0 total; 
+	Launched Version: Fabric
+	Backend library: LWJGL version 3.2.2 build 10
+	Backend API: ~~ERROR~~ NoClassDefFoundError: Could not initialize class org.lwjgl.glfw.GLFW
+	GL Caps: 
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fabric'
+	Type: Client (map_client.txt)
+	CPU: <unknown>

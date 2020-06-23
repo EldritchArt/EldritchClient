@@ -4,6 +4,7 @@ import org.lwjgl.glfw.GLFW;
 
 import net.eldritch.client.addons.Caravan;
 import net.eldritch.client.addons.Censor;
+import net.eldritch.client.addons.Drunkard;
 import net.eldritch.client.addons.F3Shadow;
 import net.eldritch.client.addons.Fumble;
 import net.eldritch.client.addons.Insomnia;
@@ -43,11 +44,14 @@ public class EldritchClient implements ModInitializer {
 		Insomnia.insomniaInit();
 		Nescience.nescienceInit();
 		Fumble.fumbleInit();
+		Drunkard.drunkardInit();
 		
 		config.saveConfigFile();
 	}
 	
 	public void setupOptionsHotkey() {
+		KeyBindingRegistry.INSTANCE.addCategory("eldritchclient");
+		
 		optionsMenuKey = FabricKeyBinding.Builder.create(
 				new Identifier("eldritchclient","open_options"),
 				InputUtil.Type.KEYSYM,

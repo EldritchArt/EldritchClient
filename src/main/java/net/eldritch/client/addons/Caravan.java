@@ -61,6 +61,7 @@ public class Caravan {
 	
 	//Huge thanks to Wurst client for helping me figure this out, its a very arcane process
 	public static void swapSlots(ClientPlayerInteractionManager i, ClientPlayerEntity player, int slot1, int slot2) {
+		if (slot1==slot2) return;
 		slot1 = (slot1<9)?slot1+36:slot1;
 		slot2 = (slot2<9)?slot2+36:slot2;
 		i.clickSlot(0, slot1, 0, SlotActionType.PICKUP, player);

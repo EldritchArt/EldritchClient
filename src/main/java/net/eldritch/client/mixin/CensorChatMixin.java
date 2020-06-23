@@ -11,6 +11,7 @@ import net.eldritch.client.addons.Censor;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.SelectorText;
 import net.minecraft.text.Text;
 
 import org.apache.logging.log4j.Logger;
@@ -26,18 +27,21 @@ public class CensorChatMixin {
 	@Inject(at = @At("HEAD"), method = "addMessage(Lnet/minecraft/text/Text;I)V", cancellable = true)
 	public void addMessage(Text text, int messageId, CallbackInfo callback) {
 		if (Censor.enabled()) {
-			String censored;
+			String original;
 			if (Censor.colourEnabled())
-				censored = Censor.doCensor(text.asFormattedString());
+				original = text.asFormattedString();
 			else
-				censored = Censor.doCensor(text.getString());
+				original = text.getString();
+			String censored = original;
 			if (censored == null)
 				callback.cancel();
-			text = new LiteralText(censored);
+			if (!censored.equals(original)) {
+				text = new LiteralText(censored);
 
-			shadow$addMessage(text, messageId, client.inGameHud.getTicks(), false);
-			LOGGER.info("[CHAT] {}", text.getString().replaceAll("\r", "\\\\r").replaceAll("\n", "\\\\n"));
-			callback.cancel();
+				shadow$addMessage(text, messageId, client.inGameHud.getTicks(), false);
+				LOGGER.info("[CHAT] {}", text.getString().replaceAll("\r", "\\\\r").replaceAll("\n", "\\\\n"));
+				callback.cancel();
+			}
 		}
 	}
 
