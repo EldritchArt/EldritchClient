@@ -11,6 +11,7 @@ import net.eldritch.client.addons.Fumble;
 import net.eldritch.client.addons.Insomnia;
 import net.eldritch.client.addons.Nescience;
 import net.eldritch.client.addons.Orient;
+import net.eldritch.client.addons.Prospector;
 import net.eldritch.client.addons.Ruinous;
 import net.eldritch.client.addons.Whisper;
 import net.eldritch.client.gui.EldritchClickGui;
@@ -47,6 +48,7 @@ public class EldritchClient implements ModInitializer {
 		Fumble.fumbleInit();
 		Drunkard.drunkardInit();
 		AutoLog.autologInit();
+		Prospector.prospectorInit();
 		
 		config.saveConfigFile();
 	}

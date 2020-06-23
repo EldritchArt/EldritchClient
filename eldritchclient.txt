@@ -9,16 +9,16 @@ Finished addons:
 	Insomnia
 	Nescience
 	Fumble
+	auto-potion
 
 Working on addons:
 	log-out-spot
 	HighlightConflictingEnchants
 	anti-lava aura
-	auto-potion
-	auto-log
 
 Wait for gui overhaul:
 	autocrafter
+	auto-log
 
 Planned addons:
 	Auto book writer (no char limit for copy paste)

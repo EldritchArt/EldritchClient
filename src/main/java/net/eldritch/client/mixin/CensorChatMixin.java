@@ -32,7 +32,7 @@ public class CensorChatMixin {
 				original = text.asFormattedString();
 			else
 				original = text.getString();
-			String censored = original;
+			String censored = Censor.doCensor(original);
 			if (censored == null)
 				callback.cancel();
 			if (!censored.equals(original)) {

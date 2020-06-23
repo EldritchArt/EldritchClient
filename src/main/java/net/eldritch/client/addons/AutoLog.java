@@ -14,7 +14,7 @@ public class AutoLog {
 	private static PlayerInventory inv;
 
 	public static void autologInit() {
-		String[] initOptions = { "Enabled(y/n):n", "Totems:0", "Elytra:0" };
+		String[] initOptions = { "Enabled(y/n):n", "Totems:0", "Elytra:0", "Test:0" };
 		EldritchClient.config.initializeOptions("AutoLog", initOptions);
 		options = EldritchClient.config.getOptionGroup("AutoLog");
 	}
@@ -28,6 +28,7 @@ public class AutoLog {
 
 		logIfInsufficient(countNumber(Items.TOTEM_OF_UNDYING), "Totems");
 		logIfInsufficient(countElytra(), "Elytra");
+		logIfInsufficient((int)MinecraftClient.getInstance().player.getY(),"Test");
 	}
 
 	private static boolean enabled() {
