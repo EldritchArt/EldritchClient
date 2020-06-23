@@ -11,7 +11,8 @@
     "WhisperInfoHud",
     "InsomniaInteractMixin",
     "NescienceSignMixin",
-    "FumbleContainerMixin"
+    "FumbleContainerMixin",
+    "PlayerTickMixin"
   ],
   "injectors": {
     "defaultRequire": 1

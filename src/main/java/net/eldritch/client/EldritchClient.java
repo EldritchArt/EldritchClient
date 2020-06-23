@@ -2,6 +2,7 @@ package net.eldritch.client;
 
 import org.lwjgl.glfw.GLFW;
 
+import net.eldritch.client.addons.AutoLog;
 import net.eldritch.client.addons.Caravan;
 import net.eldritch.client.addons.Censor;
 import net.eldritch.client.addons.Drunkard;
@@ -45,6 +46,7 @@ public class EldritchClient implements ModInitializer {
 		Nescience.nescienceInit();
 		Fumble.fumbleInit();
 		Drunkard.drunkardInit();
+		AutoLog.autologInit();
 		
 		config.saveConfigFile();
 	}
