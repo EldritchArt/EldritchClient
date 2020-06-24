@@ -85,13 +85,14 @@ public class Censor {
 	}
 
 	private static String getSimilarString(String string, String[] similar) {
+		string = string.toLowerCase();
 		for (String sim : similar) {
 			String updated = "";
 			for (int i = 0; i < string.length(); i++) {
 				if (sim.contains(Character.toString(string.charAt(i)))) {
 					updated += sim.charAt(0);
 				} else
-					updated += Character.toLowerCase(string.charAt(i));
+					updated += string.charAt(i);
 			}
 			string = updated;
 		}
