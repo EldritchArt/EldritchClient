@@ -9,11 +9,11 @@ Finished addons:
 	Insomnia
 	Nescience
 	Fumble
-	auto-potion
+	Drunkard
+	Prospector	
 
 Working on addons:
 	log-out-spot
-	HighlightConflictingEnchants
 	anti-lava aura
 
 Wait for gui overhaul:
