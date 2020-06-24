@@ -12,7 +12,8 @@
     "InsomniaInteractMixin",
     "NescienceSignMixin",
     "FumbleContainerMixin",
-    "PlayerTickMixin"
+    "PlayerTickMixin",
+    "ProspectorRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
