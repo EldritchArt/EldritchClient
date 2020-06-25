@@ -8,11 +8,13 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.text.LiteralText;
 
+//TODO better detection of logging in to a server
 public class AutoLog {
 	private static HashMap<String, String> options;
 	private static PlayerInventory inv;
-
+	
 	public static void autologInit() {
 		String[] initOptions = { "Enabled(y/n):n", "Totems:0", "Elytra:0", "Test:0" };
 		EldritchClient.config.initializeOptions("AutoLog", initOptions);
@@ -22,23 +24,22 @@ public class AutoLog {
 	public static void update() {
 		if (!enabled())
 			return;
-		if (MinecraftClient.getInstance().currentScreen != null)
-			return;
 		inv = MinecraftClient.getInstance().player.inventory;
 
-		logIfInsufficient(countNumber(Items.TOTEM_OF_UNDYING), "Totems");
-		logIfInsufficient(countElytra(), "Elytra");
-		logIfInsufficient((int)MinecraftClient.getInstance().player.getY(),"Test");
+		logIfInsufficient(countNumber(Items.TOTEM_OF_UNDYING), "Totems","[Eldritch Client] Less than %d totems");
+		logIfInsufficient(countElytra(), "Elytra","[Eldritch Client] Less than %d Elytra");
+		logIfInsufficient((int)MinecraftClient.getInstance().player.getY(),"Test", "Quitting %d");
 	}
 
 	private static boolean enabled() {
 		return options.get("Enabled(y/n)").equals("y");
 	}
 
-	public static void logIfInsufficient(int itemCount, String itemId) {
+	public static void logIfInsufficient(int itemCount, String itemId, String cause) {
 		if (itemCount < Integer.parseInt(options.get(itemId))) {
+			cause = cause.replace(" %d ", " "+Integer.parseInt(options.get(itemId))+" ");
+			MinecraftClient.getInstance().getNetworkHandler().getConnection().disconnect(new LiteralText(cause));
 			options.put("Enabled(y/n)", "n");
-			MinecraftClient.getInstance().world.disconnect();
 		}
 	}
 

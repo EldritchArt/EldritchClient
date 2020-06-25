@@ -9,6 +9,7 @@ import net.eldritch.client.addons.Drunkard;
 import net.eldritch.client.addons.F3Shadow;
 import net.eldritch.client.addons.Fumble;
 import net.eldritch.client.addons.Insomnia;
+import net.eldritch.client.addons.LogOutSpot;
 import net.eldritch.client.addons.Nescience;
 import net.eldritch.client.addons.Orient;
 import net.eldritch.client.addons.Prospector;
@@ -49,6 +50,7 @@ public class EldritchClient implements ModInitializer {
 		Drunkard.drunkardInit();
 		AutoLog.autologInit();
 		Prospector.prospectorInit();
+		LogOutSpot.logSpotInit();
 		
 		config.saveConfigFile();
 	}

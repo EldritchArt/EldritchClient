@@ -13,7 +13,8 @@
     "NescienceSignMixin",
     "FumbleContainerMixin",
     "PlayerTickMixin",
-    "ProspectorRendererMixin"
+    "ProspectorRendererMixin",
+    "MinecraftRenderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

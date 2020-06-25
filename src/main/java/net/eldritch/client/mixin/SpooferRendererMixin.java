@@ -11,6 +11,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import org.spongepowered.asm.mixin.injection.At;
 
 import net.eldritch.client.addons.F3Shadow;
+import net.eldritch.client.addons.LogOutSpot;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.Entity;
