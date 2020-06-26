@@ -66,6 +66,9 @@ public class AutoLog {
 		if (inv.getArmorStack(2).getItem().equals(Items.ELYTRA) && inv.getArmorStack(2).getDamage() < 20) {
 			retval++;
 		}
+		if (inv.getCursorStack().getItem().equals(Items.ELYTRA) && inv.getCursorStack().getDamage() < 20) {
+			retval++;
+		}
 		return retval;
 	}
 }
