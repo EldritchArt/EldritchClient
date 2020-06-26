@@ -11,10 +11,11 @@ Finished addons:
 	Fumble
 	Drunkard
 	Prospector	
+	log-out-spot
 
 Working on addons:
-	log-out-spot
 	anti-lava aura
+	AutoEZ
 
 Wait for gui overhaul:
 	autocrafter

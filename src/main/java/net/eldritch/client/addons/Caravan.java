@@ -20,6 +20,7 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class Caravan {
 	
+	public static final int CHESTPLATE = -30;
 	public static FabricKeyBinding row1;
 	public static FabricKeyBinding row2;
 	public static FabricKeyBinding row3;
