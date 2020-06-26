@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import net.eldritch.client.addons.AutoEZ;
 import net.eldritch.client.addons.AutoLog;
 import net.eldritch.client.addons.Drunkard;
+import net.eldritch.client.addons.Renewal;
 import net.eldritch.client.addons.Winged;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -25,6 +26,7 @@ public class PlayerTickMixin {
 			Drunkard.stayDrunk();
 			AutoLog.update();
 			Winged.update();
+			Renewal.update();
 		}
 	}
 }

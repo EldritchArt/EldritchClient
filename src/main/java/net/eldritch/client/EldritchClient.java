@@ -14,6 +14,7 @@ import net.eldritch.client.addons.LogOutSpot;
 import net.eldritch.client.addons.Nescience;
 import net.eldritch.client.addons.Orient;
 import net.eldritch.client.addons.Prospector;
+import net.eldritch.client.addons.Renewal;
 import net.eldritch.client.addons.Ruinous;
 import net.eldritch.client.addons.Whisper;
 import net.eldritch.client.addons.Winged;
@@ -54,6 +55,7 @@ public class EldritchClient implements ModInitializer {
 		Prospector.prospectorInit();
 		LogOutSpot.logSpotInit();
 		Winged.WingedInit();
+		Renewal.RenewalInit();
 
 		config.saveConfigFile();
 	}

@@ -47,7 +47,7 @@ public class Prospector {
 		return false;
 	}
 
-	private static String getEnchID(String tag) {
+	public static String getEnchID(String tag) {
 		String start = tag.substring(tag.indexOf("id:\"")+4);
 		int endIndex = start.indexOf("\""); //remove stuff afterwards
 		int startIndex = (start.startsWith("minecraft:")) ? 10 : 0; //remove minecraft: prefix
