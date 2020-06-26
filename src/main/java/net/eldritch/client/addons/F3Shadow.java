@@ -26,10 +26,13 @@ public class F3Shadow {
 	private static HashMap<String, String> options;
 	private static BlockPos startPos;
 	private static float[] randOffset;
+	public static int xScreenRender = 5;
+	public static int yScreenRender = 5;
 	
 	public static void F3ShadowInit() {
 		String[] initOptions = {"Enabled(y/n):n","Show Direction(y/n):y","Show Biome(y/n):y",
-				"X formula:x&pm1000000","Y formula:y&pm10","Z formula:z&pm1000000"};
+				"X formula:x&pm1000000","Y formula:y&pm10","Z formula:z&pm1000000",
+				"Screen X:5", "Screen Y:5"};
 		EldritchClient.config.initializeOptions("F3Shadow", initOptions);
 		options = EldritchClient.config.getOptionGroup("F3Shadow");
 		options.put("Enabled(y/n)", "n"); //must start off off
@@ -43,6 +46,7 @@ public class F3Shadow {
 		
 		ClientTickCallback.EVENT.register(e -> {
 			if (toggleCoords.wasPressed()) {
+				resetScreenPosition();
 				String enabled = (String)options.get("Enabled(y/n)");
 				if ("y".equals(enabled)) options.put("Enabled(y/n)", "n");
 				else {
@@ -58,6 +62,11 @@ public class F3Shadow {
 		});
 	}
 	
+	private static void resetScreenPosition() {
+		xScreenRender = Integer.parseInt(options.get("Screen X"));
+		yScreenRender = Integer.parseInt(options.get("Screen Y"));
+	}
+
 	public static String getPositionString(BlockPos currentPos) {
 		String retval = "";
 		

@@ -42,10 +42,8 @@ public void render(float float_1, long long_1, boolean boolean_1, CallbackInfo i
 		if (F3Shadow.getOptions().get("Show Biome(y/n)").equals("y")) {
 			renderInfo += String.format("%s ",client.world.getBiome(blockPos).getName().asString());
 		}
-		
-		float textPosX = 5;
 
-		client.textRenderer.drawWithShadow(renderInfo, textPosX, 5, 0xffffffff);
+		client.textRenderer.drawWithShadow(renderInfo, F3Shadow.xScreenRender, F3Shadow.yScreenRender, 0xffffffff);
 		RenderSystem.popMatrix();
 	}
 }}
