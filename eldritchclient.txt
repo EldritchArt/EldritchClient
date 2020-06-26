@@ -12,10 +12,11 @@ Finished addons:
 	Drunkard
 	Prospector	
 	log-out-spot
+	Renewal
+	Winged
 
 Working on addons:
 	anti-lava aura
-	AutoEZ
 
 Wait for gui overhaul:
 	autocrafter
@@ -26,3 +27,4 @@ Planned addons:
 	
 Would be nice but I'm not smart enough:
 	mob spawning sphere renderer
+	AutoEZ
