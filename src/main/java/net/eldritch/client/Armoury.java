@@ -180,7 +180,7 @@ public class Armoury {
 	private static final int DIAMOND_TIER = 38;
 	private static final int NETHERITE_TIER = 47;
 	private static final int PROT_TIER = 8;
-	private static final int ELYTRA_TIER = 80;
+	private static final int ELYTRA_TIER = 1000;
 
 	private static IntPair getArmorInfo(ItemStack stack) {
 		Item itemType = stack.getItem();
@@ -229,7 +229,7 @@ public class Armoury {
 			retval.update(3, GOLD_TIER);
 		else if (itemType == Items.ELYTRA) {
 			if (stack.getDamage() < Winged.ELYTRA_DANGEROUS)
-				retval.update(2, ELYTRA_TIER);
+				retval.update(2, ELYTRA_TIER - stack.getDamage());
 		} else if (itemType == Items.TURTLE_HELMET)
 			retval.update(3, TURTLE_TIER);
 

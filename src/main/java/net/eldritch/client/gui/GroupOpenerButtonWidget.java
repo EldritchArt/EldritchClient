@@ -1,6 +1,5 @@
 package net.eldritch.client.gui;
 
-import net.eldritch.client.EldritchClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.AbstractPressableButtonWidget;
 import net.minecraft.text.LiteralText;
@@ -8,15 +7,18 @@ import net.minecraft.text.LiteralText;
 public class GroupOpenerButtonWidget extends AbstractPressableButtonWidget {
 
 	private String group;
+	private EldritchClickGui gui;
 	
-	public GroupOpenerButtonWidget(int i, int j, int k, int l, String string) {
+	
+	public GroupOpenerButtonWidget(int i, int j, int k, int l, String string, EldritchClickGui gui) {
 		super(i, j, k, l, string);
 		this.group=string;
+		this.gui = gui;
 	}
 
 	@Override
 	public void onPress() {
-		EldritchClient.config.saveConfigFile();
+		gui.putNewSettingsIntoConfig();
 		MinecraftClient.getInstance().openScreen(new EldritchClickGui(new LiteralText(""), group));
 	}
 
