@@ -11,6 +11,7 @@ import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
 import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
 import net.fabricmc.fabric.api.event.client.ClientTickCallback;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.player.PlayerInventory;
@@ -140,11 +141,13 @@ public class Armoury {
 		if (currentScreen == null)
 			return true;
 		String name = currentScreen.getTitle().asFormattedString();
-		String[] safeNames = { "Game Menu", "", "Eldritch Config" }; // escape and chat screen are okay, as well as
-																		// options
+		String[] safeNames = { "Game Menu", "Eldritch Config" }; // escape and chat screen are okay, as well as
+																	// options
 		for (String safeName : safeNames)
 			if (name.equals(safeName))
 				return true;
+		if (currentScreen instanceof ChatScreen)
+			return true;
 		return false;
 	}
 
