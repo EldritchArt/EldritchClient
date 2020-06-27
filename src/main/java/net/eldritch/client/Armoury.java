@@ -49,8 +49,25 @@ public class Armoury {
 
 		ClientTickCallback.EVENT.register(e -> {
 			if (getTotem.wasPressed())
-				autoTotem(true);
+				swapTotem();
 		});
+	}
+
+	private static void swapTotem() {
+		if (!enabled())
+			return;
+		inv = mc.player.inventory;
+		mc = MinecraftClient.getInstance();
+		
+		if (inv.offHand.size() > 0 && inv.offHand.get(0).getItem() == Items.TOTEM_OF_UNDYING) {
+			for (int i = 0; i < 36; i++) {
+				ItemStack stack = inv.getInvStack(i);
+				if (stack.getItem() == Items.SHIELD) {
+					Caravan.swapSlots(mc.interactionManager, mc.player, i, Caravan.OFFHAND);
+					return;
+				}
+			}
+		} else autoTotem(true);
 	}
 
 	private static void swapElytra() {

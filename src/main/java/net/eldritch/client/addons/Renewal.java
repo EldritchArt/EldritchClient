@@ -6,6 +6,7 @@ import net.eldritch.client.Armoury;
 import net.eldritch.client.EldritchClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.ListTag;
@@ -31,22 +32,23 @@ public class Renewal {
 			return;
 
 		boolean isOffhand = options.get("Offhand(y/n)").equals("y");
-		boolean needsMove;
+		ItemStack currentStack;
 		if (isOffhand) {
-			needsMove = inv.offHand.size() > 0 && inv.offHand.get(0).isDamageable()
-					&& inv.offHand.get(0).getDamage() == 0;
+			currentStack = (inv.offHand.size() > 0) ? inv.offHand.get(0) : null;
 		} else {
-			ItemStack handStack = inv.getInvStack(inv.selectedSlot);
-			needsMove = handStack.isDamageable() && handStack.getDamage() == 0;
+			currentStack = inv.getInvStack(inv.selectedSlot);
 		}
+		boolean needsMove = currentStack.isDamageable() && currentStack.getDamage() == 0;
+		Item[] keepInOffhand = {Items.FLINT_AND_STEEL, Items.SHIELD, Items.DIAMOND_HOE, Items.BOW, Items.CROSSBOW};
+		for (Item keep : keepInOffhand)
+			if (keep == currentStack.getItem())
+				needsMove = false;
 
 		if (!needsMove)
 			return;
 
 		int movingSlot = getMendingItemSlot(inv);
 		if (-1 == movingSlot) {
-			// move it to an empty inventory slot if we have one, to allow say autototem to
-			// do its magic
 			removeOffhand();
 			return;
 		}
@@ -60,7 +62,7 @@ public class Renewal {
 	private static void removeOffhand() {
 		MinecraftClient mc = MinecraftClient.getInstance();
 		PlayerInventory inv = mc.player.inventory;
-		
+
 		int freeSlot;
 		for (freeSlot = 35; freeSlot >= 0; freeSlot--) {
 			ItemStack stack = inv.getInvStack(freeSlot);
@@ -68,7 +70,7 @@ public class Renewal {
 				break;
 			}
 		}
-		
+
 		if (freeSlot == -1)
 			return;
 		Caravan.swapSlots(mc.interactionManager, mc.player, freeSlot, Caravan.OFFHAND);
