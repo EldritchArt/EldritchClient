@@ -33,15 +33,23 @@ public class Armoury {
 		EldritchClient.config.initializeOptions("Armoury", initOptions);
 		options = EldritchClient.config.getOptionGroup("Armoury");
 
-		FabricKeyBinding toggleHotkey = FabricKeyBinding.Builder
-				.create(new Identifier("eldritchclient", "armoury_swap"), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_DOWN,
-						"eldritchclient")
-				.build();
-		KeyBindingRegistry.INSTANCE.register(toggleHotkey);
+		FabricKeyBinding swapWings = FabricKeyBinding.Builder.create(new Identifier("eldritchclient", "armoury_swap"),
+				InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_DOWN, "eldritchclient").build();
+		KeyBindingRegistry.INSTANCE.register(swapWings);
 
 		ClientTickCallback.EVENT.register(e -> {
-			if (toggleHotkey.wasPressed())
+			if (swapWings.wasPressed())
 				swapElytra();
+		});
+
+		FabricKeyBinding getTotem = FabricKeyBinding.Builder
+				.create(new Identifier("eldritchclient", "armoury_totem"), InputUtil.Type.KEYSYM, -1, "eldritchclient")
+				.build();
+		KeyBindingRegistry.INSTANCE.register(getTotem);
+
+		ClientTickCallback.EVENT.register(e -> {
+			if (getTotem.wasPressed())
+				autoTotem(true);
 		});
 	}
 
@@ -91,14 +99,14 @@ public class Armoury {
 		inv = mc.player.inventory;
 
 		if (shouldTotem())
-			autoTotem();
+			autoTotem(false);
 		if (shouldArmor())
 			autoArmor();
 	}
 
 	// moves totems to an empty offhand
-	private static void autoTotem() {
-		if (inv.offHand.size() > 0 && inv.offHand.get(0).getItem() == Items.AIR) {
+	private static void autoTotem(boolean force) {
+		if (force || (inv.offHand.size() > 0 && inv.offHand.get(0).getItem() == Items.AIR)) {
 			for (int i = 0; i < 36; i++) {
 				ItemStack stack = inv.getInvStack(i);
 				if (stack.getItem() == Items.TOTEM_OF_UNDYING) {
