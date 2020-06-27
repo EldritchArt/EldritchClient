@@ -22,6 +22,7 @@ public class Caravan {
 	
 	public static final int CHESTPLATE = -30;
 	public static final int OFFHAND = 45;
+	public static final int BOOTS = -28;
 	public static FabricKeyBinding row1;
 	public static FabricKeyBinding row2;
 	public static FabricKeyBinding row3;

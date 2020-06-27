@@ -56,6 +56,7 @@ public class EldritchClient implements ModInitializer {
 		LogOutSpot.logSpotInit();
 		Winged.WingedInit();
 		Renewal.RenewalInit();
+		Armoury.ArmouryInit();
 
 		config.saveConfigFile();
 	}

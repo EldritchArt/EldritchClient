@@ -8,6 +8,7 @@ import java.util.Set;
 import net.eldritch.client.EldritchClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.*;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 
 public class EldritchClickGui extends Screen {
@@ -35,6 +36,11 @@ public class EldritchClickGui extends Screen {
 		super(string);
 		this.openGroup = openGroup;
 		lastOpen = openGroup;
+	}
+	
+	@Override
+	public Text getTitle() {
+		return new LiteralText("Eldritch Config");
 	}
 	
 	protected void init() {

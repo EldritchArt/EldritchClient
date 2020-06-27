@@ -5,6 +5,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import net.eldritch.client.Armoury;
 import net.eldritch.client.addons.AutoEZ;
 import net.eldritch.client.addons.AutoLog;
 import net.eldritch.client.addons.Drunkard;
@@ -27,6 +28,7 @@ public class PlayerTickMixin {
 			AutoLog.update();
 			Winged.update();
 			Renewal.update();
+			Armoury.update();
 		}
 	}
 }

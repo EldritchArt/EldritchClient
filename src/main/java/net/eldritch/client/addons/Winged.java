@@ -13,6 +13,7 @@ import net.minecraft.item.Items;
 public class Winged {
 	private static HashMap<String, String> options;
 	private static int delay = 0;
+	public static final int ELYTRA_DANGEROUS = 429;
 
 	public static void WingedInit() {
 		String[] initOptions = { "Enabled(y/n):n", "Repair(y/n):n" };
@@ -50,7 +51,7 @@ public class Winged {
 						delay = 10;
 				}
 			} else {
-				if (inv.getArmorStack(2).getDamage() > 428) { // take off broken wings
+				if (inv.getArmorStack(2).getDamage() >= 429) { // take off broken wings
 					int slot = findBestElytraSlot(inv);
 					if (slot != -1) {
 						Caravan.swapSlots(MinecraftClient.getInstance().interactionManager, player, slot,
@@ -63,7 +64,7 @@ public class Winged {
 		}
 	}
 
-	private static void freeCursorStack(PlayerInventory inv) {
+	public static void freeCursorStack(PlayerInventory inv) {
 		if (inv.getCursorStack().getItem() != Items.AIR) {
 			int freeSlot = inv.getEmptySlot();
 			if (freeSlot == -1) {
@@ -77,7 +78,7 @@ public class Winged {
 		}
 	}
 
-	private static int findBestElytraSlot(PlayerInventory inv) {
+	public static int findBestElytraSlot(PlayerInventory inv) {
 		int bestDamage = 431;
 		int bestSlot = -1;
 		for (int i = 0; i < 36; i++) {
