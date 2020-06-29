@@ -9,6 +9,7 @@ import net.eldritch.client.addons.Censor;
 import net.eldritch.client.addons.Drunkard;
 import net.eldritch.client.addons.F3Shadow;
 import net.eldritch.client.addons.Fumble;
+import net.eldritch.client.addons.Hailstorm;
 import net.eldritch.client.addons.Insomnia;
 import net.eldritch.client.addons.LogOutSpot;
 import net.eldritch.client.addons.Nescience;
@@ -57,6 +58,7 @@ public class EldritchClient implements ModInitializer {
 		Winged.WingedInit();
 		Renewal.RenewalInit();
 		Armoury.ArmouryInit();
+		Hailstorm.hailstormInit();
 
 		config.saveConfigFile();
 	}

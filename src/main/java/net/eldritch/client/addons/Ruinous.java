@@ -26,7 +26,7 @@ public class Ruinous {
 		options = EldritchClient.config.getOptionGroup("Ruinous");
 
 		FabricKeyBinding toggleHotkey = FabricKeyBinding.Builder
-				.create(new Identifier("eldritchclient", "toggle_ruinous"), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_KP_2,
+				.create(new Identifier("eldritchclient", "toggle_ruinous"), InputUtil.Type.KEYSYM, -1,
 						"eldritchclient")
 				.build();
 		KeyBindingRegistry.INSTANCE.register(toggleHotkey);

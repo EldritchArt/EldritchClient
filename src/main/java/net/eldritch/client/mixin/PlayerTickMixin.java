@@ -9,6 +9,7 @@ import net.eldritch.client.Armoury;
 import net.eldritch.client.addons.AutoEZ;
 import net.eldritch.client.addons.AutoLog;
 import net.eldritch.client.addons.Drunkard;
+import net.eldritch.client.addons.Hailstorm;
 import net.eldritch.client.addons.Renewal;
 import net.eldritch.client.addons.Winged;
 import net.fabricmc.api.EnvType;
@@ -29,6 +30,7 @@ public class PlayerTickMixin {
 			Winged.update();
 			Renewal.update();
 			Armoury.update();
+			Hailstorm.onTick();
 		}
 	}
 }

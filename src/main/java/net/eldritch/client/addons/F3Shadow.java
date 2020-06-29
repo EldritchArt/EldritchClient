@@ -28,40 +28,40 @@ public class F3Shadow {
 	private static float[] randOffset;
 	public static int xScreenRender = 5;
 	public static int yScreenRender = 5;
-	
+
 	public static void F3ShadowInit() {
-		String[] initOptions = {"Enabled(y/n):n","Show Direction(y/n):y","Show Biome(y/n):y",
-				"X formula:x&pm1000000","Y formula:y&pm10","Z formula:z&pm1000000",
-				"Screen X:5", "Screen Y:5"};
+		String[] initOptions = { "Enabled(y/n):n", "Show Direction(y/n):y", "Show Biome(y/n):y",
+				"X formula:x&pm1000000", "Y formula:y&pm10", "Z formula:z&pm1000000", "Screen X:5", "Screen Y:5",
+				"X Far:x&-sx", "Y Far:y&-sy", "Z Far:z&-sz", "Far distance:1000000" };
 		EldritchClient.config.initializeOptions("F3Shadow", initOptions);
 		options = EldritchClient.config.getOptionGroup("F3Shadow");
-		options.put("Enabled(y/n)", "n"); //must start off off
-		
-		toggleCoords = FabricKeyBinding.Builder.create(
-				new Identifier("eldritchclient","toggle_coords"),
-				InputUtil.Type.KEYSYM,
-				GLFW.GLFW_KEY_KP_1,
-				"eldritchclient").build();
+		options.put("Enabled(y/n)", "n"); // must start off off
+
+		toggleCoords = FabricKeyBinding.Builder.create(new Identifier("eldritchclient", "toggle_coords"),
+				InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_KP_1, "eldritchclient").build();
 		KeyBindingRegistry.INSTANCE.register(toggleCoords);
-		
+
 		ClientTickCallback.EVENT.register(e -> {
 			if (toggleCoords.wasPressed()) {
 				resetScreenPosition();
-				String enabled = (String)options.get("Enabled(y/n)");
-				if ("y".equals(enabled)) options.put("Enabled(y/n)", "n");
+				String enabled = (String) options.get("Enabled(y/n)");
+				if ("y".equals(enabled))
+					options.put("Enabled(y/n)", "n");
 				else {
 					options.put("Enabled(y/n)", "y");
 					MinecraftClient client = MinecraftClient.getInstance();
 					Entity cameraEntity = client.getCameraEntity();
-					startPos = new BlockPos(cameraEntity.getX(), cameraEntity.getBoundingBox().getMin(Direction.Axis.Y), cameraEntity.getZ());
+					startPos = new BlockPos(cameraEntity.getX(), cameraEntity.getBoundingBox().getMin(Direction.Axis.Y),
+							cameraEntity.getZ());
 					Random rand = new Random();
 					randOffset = new float[3];
-					for (int i = 0; i<3; i++) randOffset[i]= rand.nextFloat()*2-1;
+					for (int i = 0; i < 3; i++)
+						randOffset[i] = rand.nextFloat() * 2 - 1;
 				}
 			}
 		});
 	}
-	
+
 	private static void resetScreenPosition() {
 		xScreenRender = Integer.parseInt(options.get("Screen X"));
 		yScreenRender = Integer.parseInt(options.get("Screen Y"));
@@ -69,18 +69,25 @@ public class F3Shadow {
 
 	public static String getPositionString(BlockPos currentPos) {
 		String retval = "";
-		
-		retval += computeFormula(options.get("X formula"),currentPos,startPos,randOffset[0]) + " ";
-		retval += computeFormula(options.get("Y formula"),currentPos,startPos,randOffset[1]) + " ";
-		retval += computeFormula(options.get("Z formula"),currentPos,startPos,randOffset[2]);
-		
+		int farDistance = Integer.parseInt(options.get("Far distance"));
+
+		if (Math.abs(currentPos.getX()) + Math.abs(currentPos.getZ()) > farDistance) {
+			retval += computeFormula(options.get("X Far"), currentPos, startPos, randOffset[0]) + " ";
+			retval += computeFormula(options.get("Y Far"), currentPos, startPos, randOffset[1]) + " ";
+			retval += computeFormula(options.get("Z Far"), currentPos, startPos, randOffset[2]);
+		} else {
+			retval += computeFormula(options.get("X formula"), currentPos, startPos, randOffset[0]) + " ";
+			retval += computeFormula(options.get("Y formula"), currentPos, startPos, randOffset[1]) + " ";
+			retval += computeFormula(options.get("Z formula"), currentPos, startPos, randOffset[2]);
+		}
+
 		return retval;
 	}
-	
-	public static HashMap<String,String> getOptions() {
+
+	public static HashMap<String, String> getOptions() {
 		return options;
 	}
-	
+
 	private static int computeFormula(String formula, BlockPos currentPos, BlockPos pastPos, float randCoeff) {
 		int retval = 0;
 		String[] formulaSections = formula.split("&");
@@ -88,8 +95,8 @@ public class F3Shadow {
 			int toAdd;
 			if (s.contains("pm")) {
 				s = s.replace("pm", "");
-				float offset = (Math.abs(Integer.parseInt(s))*randCoeff);
-				toAdd = (int)offset;
+				float offset = (Math.abs(Integer.parseInt(s)) * randCoeff);
+				toAdd = (int) offset;
 			} else if (s.contains("sx")) {
 				toAdd = pastPos.getX();
 			} else if (s.contains("sy")) {
@@ -105,8 +112,9 @@ public class F3Shadow {
 			} else {
 				toAdd = Math.abs(Integer.parseInt(s));
 			}
-			if (s.contains("-")) toAdd = -toAdd;
-			retval+=toAdd;
+			if (s.contains("-"))
+				toAdd = -toAdd;
+			retval += toAdd;
 		}
 		return retval;
 	}
