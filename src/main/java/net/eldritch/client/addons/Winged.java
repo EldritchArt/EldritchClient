@@ -5,10 +5,10 @@ import java.util.HashMap;
 import net.eldritch.client.EldritchClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.container.SlotActionType;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.screen.slot.SlotActionType;
 
 public class Winged {
 	private static HashMap<String, String> options;
@@ -82,7 +82,7 @@ public class Winged {
 		int bestDamage = 431;
 		int bestSlot = -1;
 		for (int i = 0; i < 36; i++) {
-			ItemStack stack = inv.getInvStack(i);
+			ItemStack stack = inv.getStack(i);
 			if (stack.getItem() == Items.ELYTRA) {
 				if (stack.getDamage() < bestDamage) {
 					bestDamage = stack.getDamage();
@@ -95,7 +95,7 @@ public class Winged {
 
 	private static int findElytraSlot(int minDamage, int maxDamage, PlayerInventory inv) {
 		for (int i = 0; i < 36; i++) {
-			ItemStack stack = inv.getInvStack(i);
+			ItemStack stack = inv.getStack(i);
 			if (stack.getItem() == Items.ELYTRA) {
 				if (stack.getDamage() < maxDamage && stack.getDamage() > minDamage) {
 					return i;

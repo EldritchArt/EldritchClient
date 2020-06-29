@@ -2,7 +2,6 @@ package net.eldritch.client.addons;
 
 import java.util.HashMap;
 
-import net.eldritch.client.Armoury;
 import net.eldritch.client.EldritchClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerInventory;
@@ -36,7 +35,7 @@ public class Renewal {
 		if (isOffhand) {
 			currentStack = (inv.offHand.size() > 0) ? inv.offHand.get(0) : null;
 		} else {
-			currentStack = inv.getInvStack(inv.selectedSlot);
+			currentStack = inv.getStack(inv.selectedSlot);
 		}
 		boolean needsMove = currentStack.isDamageable() && currentStack.getDamage() == 0;
 		Item[] keepInOffhand = {Items.FLINT_AND_STEEL, Items.SHIELD, Items.DIAMOND_HOE, Items.BOW, Items.CROSSBOW};
@@ -65,7 +64,7 @@ public class Renewal {
 
 		int freeSlot;
 		for (freeSlot = 35; freeSlot >= 0; freeSlot--) {
-			ItemStack stack = inv.getInvStack(freeSlot);
+			ItemStack stack = inv.getStack(freeSlot);
 			if (stack.getItem() == Items.AIR || stack.getItem() == Items.TOTEM_OF_UNDYING) {
 				break;
 			}
@@ -82,7 +81,7 @@ public class Renewal {
 
 	private static int getMendingItemSlot(PlayerInventory inv) {
 		for (int i = 0; i < 36; i++) {
-			ItemStack nextItem = inv.getInvStack(i);
+			ItemStack nextItem = inv.getStack(i);
 			if (!nextItem.hasEnchantments())
 				continue;
 			if (nextItem.getDamage() == 0)

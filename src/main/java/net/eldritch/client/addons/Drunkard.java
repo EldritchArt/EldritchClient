@@ -85,7 +85,7 @@ public class Drunkard {
 	}
 
 	public static boolean isBeer(ArrayList<StatusEffect> brew, int slot) {
-		ItemStack currentItem = player.inventory.getInvStack(slot);
+		ItemStack currentItem = player.inventory.getStack(slot);
 		if (currentItem.getItem() != Items.POTION)
 			return false;
 		for (StatusEffectInstance effect : PotionUtil.getPotionEffects(currentItem)) {
@@ -120,7 +120,7 @@ public class Drunkard {
 	public static void compactBottles() {
 		int bottleSlot = -1;
 		for (int i = startIndex; i < endIndex; i++) {
-			if (player.inventory.getInvStack(i).getItem() == Items.GLASS_BOTTLE) {
+			if (player.inventory.getStack(i).getItem() == Items.GLASS_BOTTLE) {
 				if (bottleSlot == -1)
 					bottleSlot = i;
 				else {

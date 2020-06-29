@@ -3,21 +3,11 @@ package net.eldritch.client.addons;
 import java.util.HashMap;
 
 import net.eldritch.client.EldritchClient;
-import net.minecraft.item.CommandBlockItem;
-import net.minecraft.item.DebugStickItem;
-import net.minecraft.item.ElytraItem;
-import net.minecraft.item.EnchantedGoldenAppleItem;
-import net.minecraft.item.EndCrystalItem;
-import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.NameTagItem;
-import net.minecraft.item.NetherStarItem;
 import net.minecraft.item.SkullItem;
 import net.minecraft.item.SpawnEggItem;
-import net.minecraft.item.TridentItem;
-import net.minecraft.item.WrittenBookItem;
 
 public class Fumble {
 	private static HashMap<String, String> options;

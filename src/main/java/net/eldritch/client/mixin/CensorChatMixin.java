@@ -12,6 +12,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.SelectorText;
+import net.minecraft.text.StringRenderable;
 import net.minecraft.text.Text;
 
 import org.apache.logging.log4j.Logger;
@@ -29,7 +30,7 @@ public class CensorChatMixin {
 		if (Censor.enabled()) {
 			String original;
 			if (Censor.colourEnabled())
-				original = text.asFormattedString();
+				original = text.asTruncatedString(400);
 			else
 				original = text.getString();
 			String censored = Censor.doCensor(original);
@@ -38,7 +39,7 @@ public class CensorChatMixin {
 			if (!censored.equals(original)) {
 				text = new LiteralText(censored);
 
-				shadow$addMessage(text, messageId, client.inGameHud.getTicks(), false);
+				shadow$addMessage(text, messageId);
 				LOGGER.info("[CHAT] {}", text.getString().replaceAll("\r", "\\\\r").replaceAll("\n", "\\\\n"));
 				callback.cancel();
 			}
@@ -46,6 +47,6 @@ public class CensorChatMixin {
 	}
 
 	@Shadow
-	private void shadow$addMessage(Text text, int messageId, int ticks, boolean b) {
+	private void shadow$addMessage(Text text, int messageId) {
 	}
 }

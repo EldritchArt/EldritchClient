@@ -20,14 +20,14 @@ public class Orient {
 		EldritchClient.config.initializeOptions("Orient", defaultList);
 		options = EldritchClient.config.getOptionGroup("Orient");
 
-		FabricKeyBinding toggleHotkey = FabricKeyBinding.Builder.create(new Identifier("eldritchclient", "orient"),
-				InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_KP_3, "eldritchclient").build();
-		KeyBindingRegistry.INSTANCE.register(toggleHotkey);
+//		FabricKeyBinding toggleHotkey = FabricKeyBinding.Builder.create(new Identifier("eldritchclient", "orient"),
+//				InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_KP_3, "eldritchclient").build();
+//		KeyBindingRegistry.INSTANCE.register(toggleHotkey);
 
-		ClientTickCallback.EVENT.register(e -> {
-			if (toggleHotkey.wasPressed())
-				orient();
-		});
+//		ClientTickCallback.EVENT.register(e -> {
+//			if (toggleHotkey.wasPressed())
+//				orient();
+//		});
 	}
 
 	public static void orient() {

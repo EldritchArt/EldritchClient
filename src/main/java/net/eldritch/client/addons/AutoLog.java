@@ -46,7 +46,7 @@ public class AutoLog {
 	public static int countNumber(Item item) {
 		int retval = 0;
 		for (int i = 0; i < 36; i++) {
-			ItemStack stack = inv.getInvStack(i);
+			ItemStack stack = inv.getStack(i);
 			if (stack.getItem().equals(item))
 				retval++;
 		}
@@ -59,7 +59,7 @@ public class AutoLog {
 	public static int countElytra() {
 		int retval = 0;
 		for (int i = 0; i < 36; i++) {
-			ItemStack stack = inv.getInvStack(i);
+			ItemStack stack = inv.getStack(i);
 			if (stack.getItem().equals(Items.ELYTRA) && stack.getDamage() < 20)
 				retval++;
 		}

@@ -12,17 +12,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import net.eldritch.client.addons.Fumble;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.ingame.ContainerScreen;
+import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
-import net.minecraft.container.Container;
-import net.minecraft.container.Slot;
-import net.minecraft.container.SlotActionType;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.slot.Slot;
+import net.minecraft.screen.slot.SlotActionType;
 
-@Mixin(ContainerScreen.class)
+@Mixin(HandledScreen.class)
 public class FumbleContainerMixin {
 	@Shadow
-	@Final
-	protected Container container;
+	protected ScreenHandler handler;
 
 	@Shadow
 	protected Slot focusedSlot;
@@ -35,7 +34,7 @@ public class FumbleContainerMixin {
 				MinecraftClient mc = MinecraftClient.getInstance();
 				ClientPlayerInteractionManager manager = mc.interactionManager;
 
-				List<Slot> slots = container.slots;
+				List<Slot> slots = handler.slots;
 				Slot originSlot = focusedSlot;
 
 				if (!Fumble.protectPlayer() || !(focusedSlot.inventory == mc.player.inventory)) {
@@ -44,12 +43,12 @@ public class FumbleContainerMixin {
 					for (int i = 0; i < slots.size(); i++) {
 						if (slots.get(i).inventory == originSlot.inventory)
 							if (Fumble.shouldDropRares() || !Fumble.isRare(slots.get(i).getStack())) {
-								manager.clickSlot(container.syncId, i, 1, SlotActionType.THROW, mc.player);
+								manager.clickSlot(handler.syncId, i, 1, SlotActionType.THROW, mc.player);
 							}
 					}
 
 					if (Fumble.shouldCloseInventory())
-						mc.player.closeContainer();
+						mc.player.closeScreen();
 				}
 			}
 		}

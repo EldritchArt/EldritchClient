@@ -34,7 +34,7 @@ public class ProspectorRendererMixin {
 			MatrixStack matrixStack = new MatrixStack();
 	            matrixStack.translate(0.0D, 0.0D, (double)(this.zOffset + 200.0F));
 	            VertexConsumerProvider.Immediate immediate = VertexConsumerProvider.immediate(Tessellator.getInstance().getBuffer());
-	            fontRenderer.draw("CON", (float)(x + 19 - 2 - fontRenderer.getStringWidth("CON")), (float)(y + 1), 16777215, true, matrixStack.peek().getModel(), immediate, false, 0, 15728880);
+	            fontRenderer.draw("CON", (float)(x + 19 - 2 - fontRenderer.getWidth("CON")), (float)(y + 1), 16777215, true, matrixStack.peek().getModel(), immediate, false, 0, 15728880);
 	            immediate.draw();
 		}
 	}

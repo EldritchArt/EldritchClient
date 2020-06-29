@@ -2,6 +2,7 @@ package net.eldritch.client;
 
 import org.lwjgl.glfw.GLFW;
 
+import net.eldritch.client.addons.Armoury;
 import net.eldritch.client.addons.AutoEZ;
 import net.eldritch.client.addons.AutoLog;
 import net.eldritch.client.addons.Caravan;

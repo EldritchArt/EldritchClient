@@ -11,7 +11,7 @@ public class GroupOpenerButtonWidget extends AbstractPressableButtonWidget {
 	
 	
 	public GroupOpenerButtonWidget(int i, int j, int k, int l, String string, EldritchClickGui gui) {
-		super(i, j, k, l, string);
+		super(i, j, k, l, new LiteralText(string));
 		this.group=string;
 		this.gui = gui;
 	}

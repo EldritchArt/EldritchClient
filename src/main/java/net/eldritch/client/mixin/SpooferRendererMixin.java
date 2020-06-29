@@ -43,7 +43,7 @@ public void render(float float_1, long long_1, boolean boolean_1, CallbackInfo i
 			renderInfo += String.format("%s ",client.world.getBiome(blockPos).getName().asString());
 		}
 
-		client.textRenderer.drawWithShadow(renderInfo, F3Shadow.xScreenRender, F3Shadow.yScreenRender, 0xffffffff);
+		//client.textRenderer.drawWithShadow(,renderInfo, F3Shadow.xScreenRender, F3Shadow.yScreenRender, 0xffffffff);
 		RenderSystem.popMatrix();
 	}
 }}

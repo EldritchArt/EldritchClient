@@ -1,12 +1,10 @@
-package net.eldritch.client;
+package net.eldritch.client.addons;
 
 import java.util.HashMap;
 
 import org.lwjgl.glfw.GLFW;
 
-import net.eldritch.client.addons.Caravan;
-import net.eldritch.client.addons.Prospector;
-import net.eldritch.client.addons.Winged;
+import net.eldritch.client.EldritchClient;
 import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
 import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
 import net.fabricmc.fabric.api.event.client.ClientTickCallback;
@@ -33,16 +31,16 @@ public class Armoury {
 		EldritchClient.config.initializeOptions("Armoury", initOptions);
 		options = EldritchClient.config.getOptionGroup("Armoury");
 
-		FabricKeyBinding swapWings = FabricKeyBinding.Builder.create(new Identifier("eldritchclient", "armoury_swap"),
+		/*FabricKeyBinding swapWings = FabricKeyBinding.Builder.create(new Identifier("eldritchclient", "armoury_swap"),
 				InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_DOWN, "eldritchclient").build();
 		KeyBindingRegistry.INSTANCE.register(swapWings);
-
-		ClientTickCallback.EVENT.register(e -> {
+*/
+		/*ClientTickCallback.EVENT.register(e -> {
 			if (swapWings.wasPressed())
 				swapElytra();
-		});
+		});*/
 
-		FabricKeyBinding getTotem = FabricKeyBinding.Builder
+		/*FabricKeyBinding getTotem = FabricKeyBinding.Builder
 				.create(new Identifier("eldritchclient", "armoury_totem"), InputUtil.Type.KEYSYM, -1, "eldritchclient")
 				.build();
 		KeyBindingRegistry.INSTANCE.register(getTotem);
@@ -50,7 +48,7 @@ public class Armoury {
 		ClientTickCallback.EVENT.register(e -> {
 			if (getTotem.wasPressed())
 				swapTotem();
-		});
+		});*/
 	}
 
 	private static void swapTotem() {
@@ -61,7 +59,7 @@ public class Armoury {
 		
 		if (inv.offHand.size() > 0 && inv.offHand.get(0).getItem() == Items.TOTEM_OF_UNDYING) {
 			for (int i = 0; i < 36; i++) {
-				ItemStack stack = inv.getInvStack(i);
+				ItemStack stack = inv.getStack(i);
 				if (stack.getItem() == Items.SHIELD) {
 					Caravan.swapSlots(mc.interactionManager, mc.player, i, Caravan.OFFHAND);
 					return;
@@ -82,7 +80,7 @@ public class Armoury {
 			int bestSlot = -1;
 			int bestPoints = 0;
 			for (int i = 0; i < 36; i++) {
-				ItemStack stack = inv.getInvStack(i);
+				ItemStack stack = inv.getStack(i);
 				if (stack.getItem() == Items.ELYTRA)
 					continue;
 				IntPair stackInfo = getArmorInfo(stack);
@@ -125,7 +123,7 @@ public class Armoury {
 	private static void autoTotem(boolean force) {
 		if (force || (inv.offHand.size() > 0 && inv.offHand.get(0).getItem() == Items.AIR)) {
 			for (int i = 0; i < 36; i++) {
-				ItemStack stack = inv.getInvStack(i);
+				ItemStack stack = inv.getStack(i);
 				if (stack.getItem() == Items.TOTEM_OF_UNDYING) {
 					Caravan.swapSlots(mc.interactionManager, mc.player, i, Caravan.OFFHAND);
 					return;
@@ -165,7 +163,7 @@ public class Armoury {
 	public static boolean safeScreen(Screen currentScreen) {
 		if (currentScreen == null)
 			return true;
-		String name = currentScreen.getTitle().asFormattedString();
+		String name = currentScreen.getTitle().asString();
 		String[] safeNames = { "Game Menu", "Eldritch Config" }; // escape and chat screen are okay, as well as
 																	// options
 		for (String safeName : safeNames)
@@ -186,7 +184,7 @@ public class Armoury {
 		}
 
 		for (int i = 0; i < 36; i++) {
-			ItemStack stack = inv.getInvStack(i);
+			ItemStack stack = inv.getStack(i);
 			IntPair stackInfo = getArmorInfo(stack);
 			if (stackInfo.a == -1)
 				continue;

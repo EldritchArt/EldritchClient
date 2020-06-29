@@ -7,14 +7,12 @@ import org.lwjgl.glfw.GLFW;
 import net.eldritch.client.EldritchClient;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
-import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
 import net.fabricmc.fabric.api.event.client.ClientTickCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.container.SlotActionType;
+import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
@@ -23,9 +21,6 @@ public class Caravan {
 	public static final int CHESTPLATE = -30;
 	public static final int OFFHAND = 45;
 	public static final int BOOTS = -28;
-	public static FabricKeyBinding row1;
-	public static FabricKeyBinding row2;
-	public static FabricKeyBinding row3;
 	
 	private static HashMap<String, String> options;
 	
@@ -34,13 +29,13 @@ public class Caravan {
 		EldritchClient.config.initializeOptions("Caravan", initOptions);
 		options = EldritchClient.config.getOptionGroup("Caravan");
 		
-		row1 = initRowKey(1, -1);
-		row2 = initRowKey(2, -1);
-		row3 = initRowKey(3, GLFW.GLFW_KEY_LEFT_ALT);
+		//row1 = initRowKey(1, -1);
+		//row2 = initRowKey(2, -1);
+		//row3 = initRowKey(3, GLFW.GLFW_KEY_LEFT_ALT);
 		
-		ClientTickCallback.EVENT.register(e->{if(row1.wasPressed()) swapRow(1);});
-		ClientTickCallback.EVENT.register(e->{if(row2.wasPressed()) swapRow(2);});
-		ClientTickCallback.EVENT.register(e->{if(row3.wasPressed()) swapRow(3);});
+//		ClientTickCallback.EVENT.register(e->{if(row1.wasPressed()) swapRow(1);});
+//		ClientTickCallback.EVENT.register(e->{if(row2.wasPressed()) swapRow(2);});
+//		ClientTickCallback.EVENT.register(e->{if(row3.wasPressed()) swapRow(3);});
 	}
 	
 	public static void swapRow(int row) {
@@ -69,7 +64,7 @@ public class Caravan {
 		i.clickSlot(0, slot1, 0, SlotActionType.PICKUP, player);
 	}
 	
-	private static FabricKeyBinding initRowKey(int row, int defaultKeyId) {
+	/*private static FabricKeyBinding initRowKey(int row, int defaultKeyId) {
 		FabricKeyBinding hotkey = FabricKeyBinding.Builder.create(
 				new Identifier("eldritchclient","swap_row_" + row),
 				InputUtil.Type.KEYSYM,
@@ -77,5 +72,5 @@ public class Caravan {
 				"eldritchclient").build();
 		KeyBindingRegistry.INSTANCE.register(hotkey);
 		return hotkey;
-	}
+	}*/
 }

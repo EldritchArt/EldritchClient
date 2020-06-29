@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import org.lwjgl.glfw.GLFW;
 
-import net.eldritch.client.Armoury;
 import net.eldritch.client.EldritchClient;
 import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
 import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
@@ -49,7 +48,7 @@ public class Hailstorm {
 	public static void onTick() {
 		mc = MinecraftClient.getInstance();
 		if (enabledPotions() && Armoury.safeScreen(mc.currentScreen)) {
-			if (mc.player.inventory.getInvStack(mc.player.inventory.selectedSlot).getItem() == Items.AIR) {
+			if (mc.player.inventory.getStack(mc.player.inventory.selectedSlot).getItem() == Items.AIR) {
 				int potSlot = getHarmPotionIndex();
 				if (potSlot != -1)
 					Caravan.swapSlots(mc.interactionManager, mc.player, potSlot, mc.player.inventory.selectedSlot);
@@ -59,7 +58,7 @@ public class Hailstorm {
 
 	private static int getHarmPotionIndex() {
 		for (int i = 0; i < 36; i++) {
-			for (StatusEffectInstance e : PotionUtil.getPotionEffects(mc.player.inventory.getInvStack(i))) {
+			for (StatusEffectInstance e : PotionUtil.getPotionEffects(mc.player.inventory.getStack(i))) {
 				if (e.getEffectType() == StatusEffects.INSTANT_DAMAGE) {
 					return i;
 				}

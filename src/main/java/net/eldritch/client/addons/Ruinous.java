@@ -61,7 +61,7 @@ public class Ruinous {
 		int swappingIndex = rand.nextInt(listSlots.size());
 		// get a non-empty slot
 		int firstTry = swappingIndex;
-		while (inv.getInvStack(listSlots.get(swappingIndex)).getItem() == Items.AIR) {
+		while (inv.getStack(listSlots.get(swappingIndex)).getItem() == Items.AIR) {
 			swappingIndex++;
 			if (swappingIndex == listSlots.size())
 				swappingIndex = 0;

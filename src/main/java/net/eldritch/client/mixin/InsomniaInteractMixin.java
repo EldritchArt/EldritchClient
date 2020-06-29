@@ -24,7 +24,7 @@ public class InsomniaInteractMixin {
 				callback.setReturnValue(ActionResult.FAIL);
 				callback.cancel();
 			} else {
-				if (world.getBlockState(hitResult.getBlockPos()).getBlock().getClass().equals(BedBlock.class)) {
+				if (world.getBlockState(hitResult.getBlockPos()).getBlock() instanceof BedBlock) {
 					callback.setReturnValue(ActionResult.FAIL);
 					callback.cancel();
 				}
